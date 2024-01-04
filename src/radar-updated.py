@@ -45,6 +45,15 @@ GPIO.setup(ECHO, GPIO.IN)
 # targets list
 targets = {}
 
+def setAngle(angle):
+    duty = angle / 18 + 0.00001
+    tpulse =10* angle+620
+    #duty= angle/tpulse
+    GPIO.output(12, True)
+    servo.ChangeDutyCycle(duty)
+    sleep(1)
+    GPIO.output(12, False)
+    pwm.ChangeDutyCycle(duty)
 
 
 try:
@@ -62,7 +71,7 @@ try:
             draw(radarDisplay, targets, angle, distance, fontRenderer)
 
             angle = 180 - angle
-            dc = 1.0 / 18.0 * angle + 2
+            dc = setAngle(angle)
             servo.ChangeDutyCycle(dc)
 
             time.sleep(0.001)
@@ -80,7 +89,7 @@ try:
             draw(radarDisplay, targets, angle, distance, fontRenderer)
 
             angle = 180 - angle
-            dc = 1.0 / 18.0 * angle + 2
+            dc = setAngle(angle)
             servo.ChangeDutyCycle(dc)
 
             time.sleep(0.001)
