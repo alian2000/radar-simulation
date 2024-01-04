@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import pygame
 import math
-import time
+import time import sleep
 import colors
 import sys
 from target import *
@@ -35,7 +35,7 @@ GPIO.setwarnings(False)
 servoPin = 12
 GPIO.setup(servoPin, GPIO.OUT)
 servo = GPIO.PWM(servoPin, 50)
-servo.start(7)
+servo.start(0)
 
 TRIG = 16
 ECHO = 18
